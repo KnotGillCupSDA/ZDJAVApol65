@@ -6,6 +6,18 @@ import org.junit.jupiter.api.Test;
 class CustomerDaoExampleTest {
 
     @Test
+    void thatWeCanAdd() {
+        CustomerDao customerDao = new CustomerDaoImpl();
+        Customer customer = new Customer("Tomek", "wozdev@gmail.com");
+
+        customerDao.add(customer);
+
+        Assertions.assertThat(customerDao.getAll())
+            .isNotEmpty()
+            .containsOnly(customer);
+    }
+
+    @Test
     void thatWeCanFindAnAddedCustomerAndItHasTheSameAttributes() {
         CustomerDao customerDao = new CustomerDaoImpl();
         Customer customer = new Customer("Tomek", "wozdev@gmail.com");
