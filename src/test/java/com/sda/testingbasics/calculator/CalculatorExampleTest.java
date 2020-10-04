@@ -1,16 +1,23 @@
 package com.sda.testingbasics.calculator;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CalculatorExampleTest {
 
+    private Calculator calculator;
+
+    @BeforeEach
+    void setUp() {
+        calculator = new Calculator();
+    }
+
     @Test
     void thatWeCanAddTwoPositiveNumbers() {
-        Calculator calculator = new Calculator();
-        int a = 2;
-        int b = 3;
-        int expected = 5;
+        double a = 2.0;
+        double b = 3.0;
+        double expected = 5.0;
 
         double sum = calculator.add(a, b);
 
@@ -19,19 +26,13 @@ class CalculatorExampleTest {
 
     @Test
     void thatWeCanAddPositiveNumberToNegativeNumber() {
-        Calculator calculator = new Calculator();
-
-        double sum = calculator.add(2, -3);
-
+        double sum = calculator.add(2.0, -3.0);
         Assertions.assertEquals(-1, sum);
     }
 
     @Test
     void thatWeCanAddTwoNegativeNumbers() {
-        Calculator calculator = new Calculator();
-
-        double sum = calculator.add(-2, -3);
-
-        Assertions.assertEquals(-5, sum);
+        double sum = calculator.add(-2.0, -3.0);
+        Assertions.assertEquals(-5.0, sum);
     }
 }
