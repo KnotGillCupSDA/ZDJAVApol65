@@ -22,6 +22,7 @@ public class Airplane {
         if(delta > 0) {
             if(delta > height) {
                 height = 0;
+                return;
             }
             height -= delta;
         }
