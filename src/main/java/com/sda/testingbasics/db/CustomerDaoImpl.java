@@ -19,7 +19,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public Customer find(String name) {
-        return customers.get(name);
+        return customers.get(name.toLowerCase());
     }
 
     @Override
