@@ -1,6 +1,9 @@
 package com.sda.j2.examples.zad4;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Storage {
 
@@ -28,12 +31,19 @@ public class Storage {
     }
 
     public void findValues(String value) {
-
+        System.out.println("keys for value " + value);
         // dla kazdej pary klucz,wartosc
-        // dla kazdej wartosci
-        // sprawdz czy wartosc == zadanej
-        // jezeli tak to wypisz na ekran
-
+        for (Map.Entry<String, List<String>> entry : storage.entrySet()) {
+            // dla kazdej wartosci na liscie
+            for (String innerValue : entry.getValue()) {
+                // sprawdz czy wartosc == zadanej
+                if (innerValue.equals(value)) {
+                    // jezeli tak to wypisz na ekran
+                    System.out.println(entry.getKey());
+                    break;
+                }
+            }
+        }
     }
 
 }

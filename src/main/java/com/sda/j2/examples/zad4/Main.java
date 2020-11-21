@@ -12,5 +12,9 @@ public class Main {
         storage.printValues("klucz1");
         storage.printValues("klucz2");
         storage.printValues("klucz3");
+
+        storage.findValues("wartosc1");
+        storage.findValues("wartosc2");
+        storage.findValues("wartosc3");
     }
 }
