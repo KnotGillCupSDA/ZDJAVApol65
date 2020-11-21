@@ -1,4 +1,4 @@
-package com.sda.j2.examples.zad10;
+package com.sda.j2.examples.zad11;
 
 public class Main {
     public static void main(String[] args) {
@@ -7,8 +7,9 @@ public class Main {
         System.out.println("perimeter: "+ circle.getPerimeter());
         System.out.println("area: "+ circle.getArea());
 
-        circle.move(new MoveDirection(1.0, 0.0));
-        //debug to see inner field values
-        //alternatively add getter methods and print them on stdout
+        circle.resize(4.0);
+        System.out.println("radius: "+ circle.getRadius());
+        System.out.println("perimeter: "+ circle.getPerimeter());
+        System.out.println("area: "+ circle.getArea());
     }
 }
