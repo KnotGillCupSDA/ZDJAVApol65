@@ -1,7 +1,6 @@
-package com.sda.j2.zad3;
+package com.sda.j2.examples.zad3;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
