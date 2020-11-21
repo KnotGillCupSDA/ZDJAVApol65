@@ -23,7 +23,7 @@ class ParcelValidatorTest {
     }
 
     @Test
-    void testExpressStandardPackageHappyPath() {
+    void testExpressPackageHappyPath() {
         Parcel parcel = new Parcel(10, 10, 10, 10.0f, true);
         Assertions.assertTrue(validator.validate(parcel));
     }
