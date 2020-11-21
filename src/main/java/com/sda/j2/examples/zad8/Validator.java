@@ -1,4 +1,4 @@
-package com.sda.j2.examples.zad5;
+package com.sda.j2.examples.zad8;
 
 @FunctionalInterface
 public interface Validator {
