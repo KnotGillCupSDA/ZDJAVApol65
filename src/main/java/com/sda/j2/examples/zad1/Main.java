@@ -22,14 +22,26 @@ public class Main {
 
     static List<String> getSorted(List<String> unsorted) {
         ArrayList<String> sorted = new ArrayList<>(unsorted);
+
+        //concrete class
         //Collections.sort(sorted, new MyStringComparator());
 
-        Collections.sort(sorted, new Comparator<String>() {
+        //anonymous class
+        /*Collections.sort(sorted, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
                 return -o1.compareTo(o2);
             }
-        });
+        });*/
+
+        // java 8 - lambda
+        //Collections.sort(sorted, (o1, o2) -> -o1.compareTo(o2));
+
+        //java 8 - built-in comparator
+        //Collections.sort(sorted, Comparator.reverseOrder());
+
+        //java 11
+        sorted.sort(Comparator.reverseOrder());
 
         return sorted;
     }
