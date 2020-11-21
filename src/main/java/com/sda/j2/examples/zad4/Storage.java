@@ -27,14 +27,13 @@ public class Storage {
         System.out.println("[" + key + "]: " + values);
     }
 
-    public List<String> findValues(String value) {
+    public void findValues(String value) {
 
         // dla kazdej pary klucz,wartosc
         // dla kazdej wartosci
         // sprawdz czy wartosc == zadanej
         // jezeli tak to wypisz na ekran
 
-        return Collections.emptyList();
     }
 
 }
