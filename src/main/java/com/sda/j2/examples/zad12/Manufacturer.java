@@ -40,5 +40,12 @@ public class Manufacturer {
         return Objects.hash(name, foundedInYear, countryOfOrigin);
     }
 
-
+    @Override
+    public String toString() {
+        return "Manufacturer{" +
+                "name='" + name + '\'' +
+                ", foundedInYear=" + foundedInYear +
+                ", countryOfOrigin='" + countryOfOrigin + '\'' +
+                '}';
+    }
 }
