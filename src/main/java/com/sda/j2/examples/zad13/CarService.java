@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class CarService {
 
@@ -56,6 +54,29 @@ public class CarService {
     public Optional<Car> getCheapest() {
         return cars.stream()
                 .min(Comparator.comparingDouble(Car::getPrice));
+    }
+
+    public List<Car> getSorted(SortOrder sortOrder) {
+        /*return cars.stream()
+                .sorted((o1, o2) -> {
+                    if(sortOrder == SortOrder.ASC) {
+                        return o1.getName().compareTo(o2.getName());
+                    } else {
+                        return -o1.getName().compareTo(o2.getName());
+                    }
+                })
+                .collect(Collectors.toList());*/
+        return cars.stream()
+                .sorted(getCarComparator(sortOrder))
+                .collect(Collectors.toList());
+    }
+
+    private Comparator<Car> getCarComparator(SortOrder sortOrder) {
+        Comparator<Car> comparing = Comparator.comparing(Car::getName);
+        if(sortOrder == SortOrder.DESC) {
+            comparing = comparing.reversed();
+        }
+        return comparing;
     }
 
 }
