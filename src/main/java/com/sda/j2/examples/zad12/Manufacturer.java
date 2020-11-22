@@ -39,4 +39,6 @@ public class Manufacturer {
     public int hashCode() {
         return Objects.hash(name, foundedInYear, countryOfOrigin);
     }
+
+
 }
