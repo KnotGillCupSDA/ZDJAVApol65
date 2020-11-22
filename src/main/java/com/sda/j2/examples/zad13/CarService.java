@@ -56,6 +56,12 @@ public class CarService {
                 .min(Comparator.comparingDouble(Car::getPrice));
     }
 
+    public Optional<Car> getCarWithAtLeast3Manufacturers() {
+        return cars.stream()
+                .filter(car -> car.getManufacturers().size() >= 3)
+                .findAny();
+    }
+
     public List<Car> getSorted(SortOrder sortOrder) {
         /*return cars.stream()
                 .sorted((o1, o2) -> {
@@ -73,10 +79,14 @@ public class CarService {
 
     private Comparator<Car> getCarComparator(SortOrder sortOrder) {
         Comparator<Car> comparing = Comparator.comparing(Car::getName);
-        if(sortOrder == SortOrder.DESC) {
+        if (sortOrder == SortOrder.DESC) {
             comparing = comparing.reversed();
         }
         return comparing;
+    }
+
+    public boolean contains(Car car) {
+        return cars.contains(car);
     }
 
 }
