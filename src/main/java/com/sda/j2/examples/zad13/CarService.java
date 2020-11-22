@@ -1,7 +1,9 @@
 package com.sda.j2.examples.zad13;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -38,13 +40,22 @@ public class CarService {
         return cars.stream()
                 .filter(car -> car.getEngineType() == Car.EngineType.V12)
                 .collect(Collectors.toList());
-
     }
 
     public List<Car> getCarsYoungerThan1999() {
         return cars.stream()
                 .filter(car -> car.getProductionYear() < 1999)
                 .collect(Collectors.toList());
+    }
+
+    public Optional<Car> getMostExpensiveCar() {
+        return cars.stream()
+                .max(Comparator.comparingDouble(Car::getPrice));
+    }
+
+    public Optional<Car> getCheapest() {
+        return cars.stream()
+                .min(Comparator.comparingDouble(Car::getPrice));
     }
 
 }
