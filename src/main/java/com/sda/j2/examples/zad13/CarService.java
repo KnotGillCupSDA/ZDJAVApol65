@@ -41,4 +41,10 @@ public class CarService {
 
     }
 
+    public List<Car> getCarsYoungerThan1999() {
+        return cars.stream()
+                .filter(car -> car.getProductionYear() < 1999)
+                .collect(Collectors.toList());
+    }
+
 }
