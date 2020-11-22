@@ -4,9 +4,28 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class CarService {
+
+    enum ComparisonOperator {
+        LESS,
+        GREATER,
+        EQUAL;
+
+        Predicate<Manufacturer> getManufacturerPredicate(int year) {
+            switch (this) {
+                case LESS:
+                    return manufacturer -> manufacturer.getFoundedInYear() < year;
+                case GREATER:
+                    return manufacturer -> manufacturer.getFoundedInYear() > year;
+                default:
+                case EQUAL:
+                    return manufacturer -> manufacturer.getFoundedInYear() == year;
+            }
+        }
+    }
 
     private final List<Car> cars;
 
@@ -87,6 +106,26 @@ public class CarService {
 
     public boolean contains(Car car) {
         return cars.contains(car);
+    }
+
+    public List<Car> getCarsProducedBy(Manufacturer manufacturer) {
+        return cars.stream()
+                .filter(car -> car.getManufacturers().contains(manufacturer))
+                .collect(Collectors.toList());
+    }
+
+    public List<Car> getCarsProducedBy(int year, ComparisonOperator operator) {
+        return cars.stream()
+                .filter(car -> car.getManufacturers().stream()
+                        .anyMatch(operator.getManufacturerPredicate(year)))
+                .collect(Collectors.toList());
+    }
+
+    public List<Car> getCarsProducedBy(int year) {
+        return cars.stream()
+                .filter(car -> car.getManufacturers().stream()
+                        .anyMatch(manufacturer -> manufacturer.getFoundedInYear() < year))
+                .collect(Collectors.toList());
     }
 
 }
