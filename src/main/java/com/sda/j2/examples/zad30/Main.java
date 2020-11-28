@@ -64,6 +64,7 @@ public class Main {
     }
 
     private static String getReversedFileName(String fileName) {
+        //todo: implement dynamically
         return "eliFtxeTemos.txt";
     }
 
