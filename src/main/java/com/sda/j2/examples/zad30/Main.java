@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -14,13 +15,29 @@ public class Main {
         String fileName = "someTextFile.txt";
         Path inputFile = rootDir.resolve(fileName);
 
-        String content  = readTextFileWithNio(inputFile);
-        System.out.println(content);
-        System.out.println();
-        String reversed = new StringBuilder(content).reverse().toString();
-        System.out.println(reversed);
+        //String content  = readTextFileWithNio(inputFile);
+        List<String> lines  = readLinesOldWay(inputFile);
+        //List<String> lines  = readLinesWithNio(inputFile);
 
+        System.out.println(lines);
+        System.out.println();
+
+        String reversed = reverse(lines);
+
+        System.out.println(reversed);
         writeToFileWithNio(reversed, rootDir.resolve(getReversedFileName(fileName)));
+    }
+
+    private static List<String> readLinesOldWay(Path inputFile) {
+        return null;
+    }
+
+    private static List<String> readLinesWithNio(Path inputFile) {
+        return null;
+    }
+
+    private static String reverse(List<String> lines) {
+        return null;
     }
 
     private static String getReversedFileName(String fileName) {
@@ -34,8 +51,6 @@ public class Main {
     private static void writeToFileWithNio(String content, Path outputFile) throws IOException {
         Files.writeString(outputFile, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
     }
-
-
 
     private static String readTextFileOldWay(Path myFile) throws IOException {
 
