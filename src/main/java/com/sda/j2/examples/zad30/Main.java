@@ -11,20 +11,20 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         Path rootDir = Paths.get("src", "main", "resources");
-        Path inputFile = rootDir.resolve("someTextFile.txt");
+        String fileName = "someTextFile.txt";
+        Path inputFile = rootDir.resolve(fileName);
 
-        String s = readTextFileOldWay(inputFile);
-        System.out.println(s);
-
+        String content  = readTextFileWithNio(inputFile);
+        System.out.println(content);
         System.out.println();
+        String reversed = new StringBuilder(content).reverse().toString();
+        System.out.println(reversed);
 
-        s = readTextFileWithNio(inputFile);
-        System.out.println(s);
+        writeToFileWithNio(reversed, rootDir.resolve(getReversedFileName(fileName)));
+    }
 
-        Path outputFile = rootDir.resolve("eliFtxeTemos.txt");
-        writeToFileOldWay(s, outputFile);
-
-        writeToFileWithNio(s, rootDir.resolve("eliFtxeTemosNIO.txt"));
+    private static String getReversedFileName(String fileName) {
+        return "eliFtxeTemos.txt";
     }
 
     private static String readTextFileWithNio(Path inputFile) throws IOException {
@@ -32,7 +32,7 @@ public class Main {
     }
 
     private static void writeToFileWithNio(String content, Path outputFile) throws IOException {
-        Files.writeString(outputFile, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
+        Files.writeString(outputFile, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
     }
 
 
