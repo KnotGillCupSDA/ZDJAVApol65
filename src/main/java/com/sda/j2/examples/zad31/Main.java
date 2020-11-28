@@ -4,16 +4,19 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Map<String, Integer> counter;
+        Map<String, Integer> counter = new HashMap<>();
+        Path path = Paths.get("src", "main", "resources", "zad31");
+        String fileName = "veryLongFile.txt";
 
-
-        Path path = ...;
-        List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+        List<String> lines = Files.readAllLines(path.resolve(fileName), StandardCharsets.UTF_8);
 
         for (String line : lines) {
             String normalizedLine = line.replaceAll("[^\\p{L}\\s]", "");
@@ -22,6 +25,12 @@ public class Main {
 
             for (String word : words) {
                 //process word
+                Integer integer = counter.get(word);
+                if(integer != null) {
+                    counter.put(word, integer +1);
+                } else {
+                    counter.put(word, 1);
+                }
             }
         }
 
@@ -30,6 +39,17 @@ public class Main {
         System.out.println(counter);
 
         //write to file
+        //Files.writeString(path.resolve("counter.txt"), counter.toString());
 
+
+        Files.writeString(path.resolve("counter.csv"), getInCsvFormat(counter));
+
+
+    }
+
+    private static String getInCsvFormat(Map<String, Integer> counter) {
+        return counter.entrySet().stream()
+                .map(e -> e.getKey()+","+e.getValue())
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 }
