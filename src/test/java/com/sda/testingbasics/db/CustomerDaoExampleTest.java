@@ -25,8 +25,11 @@ class CustomerDaoExampleTest {
         customerDao.add(customer);
         Customer foundCustomer = customerDao.find(customer.getName());
 
-        Assertions.assertThat(foundCustomer.getName())
-            .isEqualTo(customer.getName());
+        Assertions.assertThat(foundCustomer)
+                .isNotNull()
+                .extracting(Customer::getName)
+                .isEqualTo(customer.getName());
+
         Assertions.assertThat(foundCustomer.getEmail())
             .isEqualTo(customer.getEmail());
     }
