@@ -13,8 +13,10 @@ class CustomerDaoExampleTest {
         customerDao.add(customer);
 
         Assertions.assertThat(customerDao.getAll())
-            .isNotEmpty()
-            .containsOnly(customer);
+                .isNotNull()
+                .isNotEmpty()
+                .hasSize(1)
+                .containsOnly(customer);
     }
 
     @Test
@@ -31,6 +33,6 @@ class CustomerDaoExampleTest {
                 .isEqualTo(customer.getName());
 
         Assertions.assertThat(foundCustomer.getEmail())
-            .isEqualTo(customer.getEmail());
+                .isEqualTo(customer.getEmail());
     }
 }
